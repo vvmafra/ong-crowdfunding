@@ -1,6 +1,6 @@
-# Crowdfunding Smart Contract - MultiversX
+# ONG Crowdfunding Smart Contract - MultiversX
 
-Este projeto implementa um contrato inteligente de crowdfunding na blockchain MultiversX, permitindo a criação de campanhas de financiamento coletivo com regras claras e transparentes.
+Este projeto implementa um contrato inteligente de crowdfunding na blockchain MultiversX, permitindo a criação de campanhas de financiamento coletivo com regras claras e transparentes para ONGs.
 
 ## Funcionalidades
 
@@ -13,16 +13,16 @@ Este projeto implementa um contrato inteligente de crowdfunding na blockchain Mu
 ## Pré-requisitos
 
 - Rust (última versão estável)
-- MultiversX SDK
-- MultiversX IDE (opcional)
+- Node 20.11+
+- mxpy
+- pip3
 - Carteira MultiversX (para testes)
 
 ## Instalação
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/crowdfunding-contract.git
-cd crowdfunding-contract
+git clone https://github.com/vvmafra/ong-crowdfunding
 ```
 
 2. Instale as dependências:
@@ -38,7 +38,7 @@ O contrato possui as seguintes funcionalidades principais:
 ```rust
 fn init(&self, target: BigUint)
 ```
-- Define a meta de financiamento
+- Define a meta de financiamento (em EGLD)
 - A meta deve ser maior que zero
 
 ### Contribuição
@@ -73,41 +73,74 @@ mxpy contract build
 ```
 
 2. Deploy na testnet:
+- Criar arquivo com informações do contrato (my_wallet.json por exemplo)   
 ```bash
-mxpy contract deploy --bytecode=output/crowdfunding.wasm --recall-nonce --gas-limit=50000000 --send --proxy=https://testnet-api.multiversx.com --chain=T
+mxpy --verbose contract deploy --bytecode="./output/ongcrowdfunding.wasm" --keyfile="my_wallet.json" --gas-limit=100000000 --proxy="https://testnet-gateway.multiversx.com" --chain="T" --arguments <quantidade de EGLD que você pretende para a sua campanha 1000000000000000000 (1 EGLD), por exemplo> --send
 ```
 
-## Testando o Contrato
+3. Checagem de Deploy
+- Para checar se o deploy funcionou, basta acessar https://testnet-explorer.multiversx.com/ e adicionar o contractAddress que foi gerado após o deploy do contrato;
+- Exemplo de contrato com deploy realizado:
+["contractAddress": "erd1qqqqqqqqqqqqqpgqytydxz60g758gla6xy4la0k2r9g5slfhn20sv5fatl"](https://testnet-explorer.multiversx.com/accounts/erd1qqqqqqqqqqqqqpgqytydxz60g758gla6xy4la0k2r9g5slfhn20sv5fatl)
 
-1. Crie uma nova campanha:
+## Testes Automatizados
+
+O projeto possui uma suite completa de testes automatizados que cobrem todas as funcionalidades principais do contrato:
+
 ```bash
-mxpy contract call <endereço-do-contrato> --function="init" --arguments 1000000000000000000 --recall-nonce --gas-limit=50000000 --send --proxy=https://testnet-api.multiversx.com --chain=T
+cargo test
 ```
 
-2. Faça uma contribuição:
-```bash
-mxpy contract call <endereço-do-contrato> --function="fund" --value=100000000000000000 --recall-nonce --gas-limit=50000000 --send --proxy=https://testnet-api.multiversx.com --chain=T
-```
+Os testes incluem:
+- Deploy do contrato
+- Contribuições (funding)
+- Verificação de status
+- Reivindicação de fundos (tanto para campanhas bem-sucedidas quanto falhas)
+- Validações de segurança
 
-3. Verifique o status:
-```bash
-mxpy contract query <endereço-do-contrato> --function="status" --proxy=https://testnet-api.multiversx.com
-```
+Cada teste simula diferentes cenários:
+- Campanhas que atingem a meta
+- Campanhas que falham
+- Tentativas de reivindicação prematura
+- Verificações de saldo e status
 
 ## Segurança
 
 - Apenas o owner pode finalizar a campanha
-- Contribuições só são aceitas durante o período de financiamento
 - Reivindicação de fundos segue regras específicas baseadas no resultado
 
-## Contribuição
+## Próximos Passos
 
-Contribuições são bem-vindas! Por favor, leia o [CONTRIBUTING.md](CONTRIBUTING.md) para detalhes sobre nosso código de conduta e o processo para enviar pull requests.
+1. Front-end de Doação  
+   - **Tecnologias sugeridas:** React com TypeScript, usando o SDK MultiversX (mx-sdk-dapp)  
+   - Componentes principais:
+     - Tela de listagem de campanhas (status, progresso e metas)
+     - Formulário de contribuição (seleção de valor, preview de taxa de rede)
+     - Dashboard do criador (visualizar backers, valores arrecadados, ações de finalize/claim)
+   - Demonstrações em tempo real (websocket ou polling) para atualizar progresso de campanha sem recarregar a página.
 
-## Licença
+2. Testes Automatizados  
+   - CI (GitHub Actions) para disparar build + teste a cada PR.
 
-Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para detalhes.
+3. Auditoria e Otimização  
+   - Revisão de segurança (verificar over-flows, reentrância, limites de gas)  
+   - Benchmark de custos de gas por operação  
+   - Adicionar limites de contribuição mínima e máxima, rate-limiting.
+
+4. Documentação e Exemplos  
+   - Exemplos de chamadas `mxpy` no README (com flags completas e JSON de argumentos)  
+   - Vídeo curto/demo GIF mostrando uma doação e a emissão dos eventos na blockchain  
+   - Guia de uso da carteira no testnet (Passo a passo de criação/importação).
+
+5. Deploy em Mainnet  
+   - Planejar migração do contrato para a mainnet  
+   - Definir estratégia de gestão de chaves do owner (social recovery, multisig)  
+   - Monitoramento de performance (alertas de falhas, dashboards de métricas).
+
+---
+
+Com isso você entrega não só o core do smart contract, mas também toda a infra e UX para que ONGs — e seus doadores — possam usar de maneira simples e transparente.
 
 ## Contato
 
-Para dúvidas ou sugestões, abra uma issue no repositório ou entre em contato através do Discord NearX. 
+Para dúvidas ou sugestões, abra uma issue no repositório. 
