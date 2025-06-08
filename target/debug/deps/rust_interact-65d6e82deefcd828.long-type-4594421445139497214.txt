@@ -1,0 +1,1 @@
+CrowdfundingProxy: TxProxyTrait<InteractorEnvQuery<'_, GatewayHttpProxy>, (), &multiversx_sc_snippets::imports::Bech32Address, ()>

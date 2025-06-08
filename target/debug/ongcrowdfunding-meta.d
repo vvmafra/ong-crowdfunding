@@ -1,0 +1,1 @@
+/mnt/d/Victor/Stuff/BlockChain/myong-crowdfunding/ongcrowdfunding/target/debug/ongcrowdfunding-meta: /mnt/d/Victor/Stuff/BlockChain/myong-crowdfunding/ongcrowdfunding/meta/src/main.rs /mnt/d/Victor/Stuff/BlockChain/myong-crowdfunding/ongcrowdfunding/src/crowdfunding_proxy.rs /mnt/d/Victor/Stuff/BlockChain/myong-crowdfunding/ongcrowdfunding/src/ongcrowdfunding.rs

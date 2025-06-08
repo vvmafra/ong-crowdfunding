@@ -1,0 +1,1 @@
+multiversx_sc_snippets::imports::Tx<InteractorEnvExec<'_, GatewayHttpProxy>, &VMAddress, (), (), ExplicitGas<u64>, (), ()>

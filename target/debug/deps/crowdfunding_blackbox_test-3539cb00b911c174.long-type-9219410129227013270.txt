@@ -1,0 +1,1 @@
+CrowdfundingProxyMethods<ScenarioEnvQuery<'_>, (), multiversx_sc_scenario::imports::TestSCAddress<'_>, ()>

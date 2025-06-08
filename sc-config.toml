@@ -1,0 +1,8 @@
+[settings]
+
+[[proxy]]
+path = "src/crowdfunding_proxy.rs"
+
+[[proxy]]
+path = "interactor/src/proxy.rs"
+

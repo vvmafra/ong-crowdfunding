@@ -1,0 +1,1 @@
+CrowdfundingProxy: TxProxyTrait<InteractorEnvExec<'_, GatewayHttpProxy>, &VMAddress, (), ExplicitGas<u64>>

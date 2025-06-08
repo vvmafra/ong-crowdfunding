@@ -1,0 +1,1 @@
+Tx<ScenarioEnvQuery<'_>, (), multiversx_sc_scenario::imports::TestSCAddress<'_>, NotPayable, (), FunctionCall<VMHooksApi<multiversx_sc_scenario::api::impl_vh::static_api::StaticApiBackend>>, ConsRet<ScenarioEnvQuery<'_>, multiversx_sc_scenario::ExpectValue<ongcrowdfunding::Status>, OriginalResultMarker<ongcrowdfunding::crowdfunding_proxy::Status>>>

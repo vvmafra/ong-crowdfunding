@@ -1,0 +1,1 @@
+CrowdfundingProxyMethods<InteractorEnvExec<'_, GatewayHttpProxy>, &VMAddress, &multiversx_sc_snippets::imports::Bech32Address, ExplicitGas<u64>>

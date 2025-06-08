@@ -1,0 +1,5 @@
+meu_wallet.json
+node_modules/
+.env
+.DS_Store
+*.log 
