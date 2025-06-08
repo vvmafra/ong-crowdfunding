@@ -81,7 +81,7 @@ mxpy --verbose contract deploy --bytecode="./output/ongcrowdfunding.wasm" --keyf
 3. Checagem de Deploy
 - Para checar se o deploy funcionou, basta acessar https://testnet-explorer.multiversx.com/ e adicionar o contractAddress que foi gerado após o deploy do contrato;
 - Exemplo de contrato com deploy realizado:
-["contractAddress": "erd1qqqqqqqqqqqqqpgqytydxz60g758gla6xy4la0k2r9g5slfhn20sv5fatl"](https://testnet-explorer.multiversx.com/accounts/erd1qqqqqqqqqqqqqpgqytydxz60g758gla6xy4la0k2r9g5slfhn20sv5fatl)
+[Contract ID: erd1qqqqqqqqqqqqqpgqytydxz60g758gla6xy4la0k2r9g5slfhn20sv5fatl](https://testnet-explorer.multiversx.com/accounts/erd1qqqqqqqqqqqqqpgqytydxz60g758gla6xy4la0k2r9g5slfhn20sv5fatl)
 
 ## Testes Automatizados
 
